@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, jsonify, render_template, request, redirect, url_for
 import mysql.connector
 
 app = Flask(__name__)
@@ -9,12 +9,10 @@ db_user = 'root'
 db_password = ''
 db_name = 'livraria_virtual'
 
-# Rota para processar o formulário
-@app.route('/livros', methods=['PUT'])
+@app.route('/livro', methods=['POST'])
 def submit_formulario():
     # Obter dados do formulário
-    id = request.form['id']
-    nome = request.form['nome']
+    titulo = request.form['titulo']
     genero = request.form['genero']
     sinopse = request.form['sinopse']
 
@@ -31,18 +29,8 @@ def submit_formulario():
         cursor = connection.cursor()
 
         # Executar comando SQL para inserir dados
-        sql = sql = """UPDATE usuarios
-        SET
-            nome = CASE WHEN %s IS NOT NULL THEN %s ELSE nome END,
-            email = CASE WHEN %s IS NOT NULL THEN %s ELSE email END,
-            idade = CASE WHEN %s IS NOT NULL THEN %s ELSE idade END,
-            genero = CASE WHEN %s IS NOT NULL THEN %s ELSE genero END,
-            mensagem = CASE WHEN %s IS NOT NULL THEN %s ELSE mensagem END
-        WHERE id = %s
-"""
-        params = (id, nome, genero, sinopse)
-        mycursor.execute(sql, params)
-        cursor.execute(sql, (nome, genero, sinopse))
+        sql = "INSERT INTO livros (titulo, genero, sinopse) VALUES (%s, %s, %s)"
+        cursor.execute(sql, (titulo, genero, sinopse))
         connection.commit()
     except mysql.connector.Error as err:
         print(f"Erro ao conectar ao banco de dados: {err}")
@@ -56,6 +44,34 @@ def submit_formulario():
 
     # Redirecionar para página de sucesso ou outra página
     return redirect(url_for('sucesso'))
+
+
+@app.route('/livro/<int:livro_id>', methods=['PUT'])
+def atualizar_livro(livro_id):
+    # Obter os dados do formulário
+    dados = request.json  # Assumindo que os dados são enviados em formato JSON
+
+    # Validar os dados
+    # ... (implementar a validação aqui)
+
+    # Construir a consulta SQL
+    sql = "UPDATE livros SET titulo=%s, genero=%s, sinopse=%s WHERE id=%s"
+    valores = (dados['titulo'], dados['genero'], dados['sinopse'], livro_id)
+
+    # Conectar ao banco de dados e executar a consulta
+    try:
+        with mysql.connector.connect(
+            host=db_host, user=db_user, password=db_password, database=db_name
+        ) as mydb:
+            mycursor = mydb.cursor()
+            mycursor.execute(sql, valores)
+            mydb.commit()
+            return jsonify({'mensagem': 'Usuário atualizado com sucesso'}), 200
+    except mysql.connector.Error as error:
+        return jsonify({'error': str(error)}), 500
+
+if __name__ == '__main__':
+    app.run(debug=True)
 
 # Rota para página de sucesso
 @app.route('/sucesso')
