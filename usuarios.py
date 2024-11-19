@@ -14,7 +14,7 @@ def inicial():
     return render_template('/index.html')
 
 
-# Rota para processar o formulário
+# Rota para processar o formulário  
 @app.route('/usuario', methods=['POST'])
 def submit_formulario():
     # Obter dados do formulário
