@@ -183,7 +183,54 @@ def get_genero_livro():
     else:
         return jsonify({'mensagem': 'O parâmetro "titulo" é obrigatório'}), 400
 
+@app.route('/delete_livro/<int:livro_id>', methods=['DELETE'])
+def delete_livro(livro_id):
+    try:
+        # Conectar ao banco de dados
+        with mysql.connector.connect(
+            host=db_host, user=db_user, password=db_password, database=db_name
+        ) as mydb:
+            mycursor = mydb.cursor()
 
+            # Executar a consulta SQL para deletar o livro
+            sql = "DELETE FROM livros WHERE id = %s"
+            valores = (livro_id,)
+
+            mycursor.execute(sql, valores)
+            mydb.commit()  # Confirmar a transação
+
+            # Verificar se algum registro foi deletado
+            if mycursor.rowcount > 0:
+                return jsonify({'mensagem': 'Livro deletado com sucesso'}), 200
+            else:
+                return jsonify({'mensagem': 'Nenhum livro encontrado com o ID fornecido'}), 404
+
+    except mysql.connector.Error as error:
+        return jsonify({'erro': str(error)}), 500
+
+@app.route('/delete_all_livros', methods=['DELETE'])
+def delete_all_livros():
+    try:
+        # Conectar ao banco de dados
+        with mysql.connector.connect(
+            host=db_host, user=db_user, password=db_password, database=db_name
+        ) as mydb:
+            mycursor = mydb.cursor()
+
+            # Executar a consulta SQL para deletar todos os livros
+            sql = "DELETE FROM livros"
+
+            mycursor.execute(sql)
+            mydb.commit()  # Confirmar a transação
+
+            # Verificar se algum registro foi deletado
+            if mycursor.rowcount > 0:
+                return jsonify({'mensagem': 'Todos os livros foram deletados com sucesso'}), 200
+            else:
+                return jsonify({'mensagem': 'Nenhum livro para deletar'}), 404
+
+    except mysql.connector.Error as error:
+        return jsonify({'erro': str(error)}), 500
 
 
 if __name__ == '__main__':
