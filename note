@@ -6,24 +6,28 @@ CREATE TABLE produtos(
 
 INSERT INTO acessorios_tecnologicos(tipo_de_produto, quantidade, cor) VALUES ('Fone de ouvido',19,'preto');
 
-Insert into eletronicos(tipo_de_produto,quantidade,cor) Values 
-('Smartphone',	50	,'Preto'),
-('Smartphone',	30	,'Branco'),
-('Notebook',	20,	'Prata'),
-('Notebook',	15	,'Cinza'),
-('Tablet',	10	,'Dourado'),
+Insert into produtos(nome,quantidade,tipo_de_produto) Values 
+('Smartphone',	50	,'eletronico');
+('iphone',	30	,'eletronico'),
+('Notebook asus',	20,	'eletronico'),
+('Notebook apple',	15	,'Cinza'),
+('Tablet samsung',	10	,'Dourado'),
 ('Smartwatch',	40	,'Preto'),
-('Fone de ouvido',	100,	'Branco'),
-('Fone de ouvido',	80	,'Azul'),
-('Câmera digital',	15	,'Preta'),
-('Câmera digital',	10	,'Prata'),
-('Smart TV'	,5,	'Cinza'),
+('aparelho de ouvido',	100,	'Branco'),
+('Fone de ouvido ',	80	,'Azul'),
+('Câmera fotográfica',	15	,'Preta'),
+('Câmera analógica',	10	,'Prata'),
+('Smart TV tlc'	,5,	'Cinza'),
 ('Smart TV'	,3,	'Preto'),
-('Videogame',	20	,'Preto'),
+('xbox',	20	,'Preto'),
 ('Videogame',	15	,'Branco'),
-('Impressora',	10	,'Branca'),
+(' mini Impressora',	10	,'Branca'),
 ('Projetor',	5	,'Branco'),
 ('Alto-falante',	30	,'Preto'),
-('Alto-falante',	20	,'Vermelho'),
+('Alto-falante ',	20	,'Vermelho'),
 ('Drone',	8	,'Preto'),
 ('Smartband',	50	,'Preto');
+
+insert into usuario(nome,email,idade,genero,mensagem) VALUES
+('Matheus','matheussilvafrancisco612@gmail.com',16,'masc','Oiie'),
+('Giovana','giovana@gmail.com',19,'fem','Moro em SP');

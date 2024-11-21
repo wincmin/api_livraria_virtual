@@ -1,5 +1,7 @@
-from flask import Flask, jsonify, render_template, request, redirect, url_for
+from flask import Blueprint,Flask, jsonify, render_template, request, redirect, url_for
 import mysql.connector
+
+usuarios_hp = Blueprint('suarios_hp',__name__)
 
 app = Flask(__name__)
 
@@ -38,6 +40,10 @@ def submit_formulario():
         sql = "INSERT INTO usuarios (nome, email, idade, genero, mensagem) VALUES (%s, %s, %s, %s, %s)"
         cursor.execute(sql, (nome, email, idade, genero, mensagem))
         connection.commit()
+
+        last_id = mycursor.lastroiwid
+        cria_senha(last_id)
+        return jsonify(("mensagem: usuario cadastrado com sucesso")), 201
     except mysql.connector.Error as err:
         print(f"Erro ao conectar ao banco de dados: {err}")
         return "Erro ao processar os dados. Tente novamente mais tarde."
