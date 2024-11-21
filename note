@@ -1,0 +1,29 @@
+CREATE TABLE produtos(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    quantidade INT,
+    tipo_de_produto VARCHAR(20) NOT NULL);
+
+INSERT INTO acessorios_tecnologicos(tipo_de_produto, quantidade, cor) VALUES ('Fone de ouvido',19,'preto');
+
+Insert into eletronicos(tipo_de_produto,quantidade,cor) Values 
+('Smartphone',	50	,'Preto'),
+('Smartphone',	30	,'Branco'),
+('Notebook',	20,	'Prata'),
+('Notebook',	15	,'Cinza'),
+('Tablet',	10	,'Dourado'),
+('Smartwatch',	40	,'Preto'),
+('Fone de ouvido',	100,	'Branco'),
+('Fone de ouvido',	80	,'Azul'),
+('Câmera digital',	15	,'Preta'),
+('Câmera digital',	10	,'Prata'),
+('Smart TV'	,5,	'Cinza'),
+('Smart TV'	,3,	'Preto'),
+('Videogame',	20	,'Preto'),
+('Videogame',	15	,'Branco'),
+('Impressora',	10	,'Branca'),
+('Projetor',	5	,'Branco'),
+('Alto-falante',	30	,'Preto'),
+('Alto-falante',	20	,'Vermelho'),
+('Drone',	8	,'Preto'),
+('Smartband',	50	,'Preto');
