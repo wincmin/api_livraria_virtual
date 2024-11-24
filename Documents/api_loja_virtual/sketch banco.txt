@@ -1,0 +1,28 @@
+INSERT INTO produtos (categoria, cor, qntd, nome_produto, preco, imagem, descricao, autor, ano_lancamento, genero, marca)
+VALUES
+('livro', 'azul', 50, 'O Senhor dos Anéis', 59.99, 'caminho_da_imagem.jpg', 'Uma grande aventura...', 'J.R.R. Tolkien', 1954, 'Fantasia', 'Martins Fontes'),
+('roupa', 'preta', 20, 'Camiseta básica', 19.99, 'caminho_da_imagem.jpg', 'Algodão 100%', NULL, NULL, 'Masculino', 'Hering'),
+('eletronico', 'prata', 10, 'Smartphone X', 2999.99, 'caminho_da_imagem.jpg', 'Tela AMOLED', NULL, NULL, NULL, 'Samsung');
+
+
+CREATE TABLE produtos (
+id INT AUTO_INCREMENT PRIMARY KEY,
+categoria ENUM('livro', 'roupa', 'eletronico'),
+cor VARCHAR(100),
+qntd INT,api_loja_virtual/sketch banco.txt
+nome_produto VARCHAR(100),
+preco DECIMAL(10,2),
+imagem VARCHAR(255),
+descricao TEXT,
+autor VARCHAR(100),
+ano_lancamento YEAR,
+genero VARCHAR(50),
+marca VARCHAR(50)
+
+
+categoria
+nome_produto
+cor 
+preco
+genero
+marca
