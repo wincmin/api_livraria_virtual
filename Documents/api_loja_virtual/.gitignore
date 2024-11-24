@@ -1,19 +1,22 @@
-# Ignorar arquivos desnecessários
-*.xlsx
-*.pdf
-*.ini
+# Ignorar arquivos e pastas do sistema
 *.log
-*.dat
+*.bak
+*.swp
+.DS_Store
+Thumbs.db
 
-# Ignorar diretórios desnecessários
-api_loja_virtual/
-../../Downloads/
-../../Favorites/
-../../AppData/
-../../Desktop/
-../../Music/
-../../Pictures/
-../../Videos/
-../../OneDrive/
+# Ignorar pastas do usuário
+/node_modules
+/venv
+/__pycache__
+.idea/
+.vscode/
+
+# Ignorar diretórios de sistema
+/AppData/
+/Desktop/
+/Documents/
+/Downloads/
+/OneDrive/
 
 
