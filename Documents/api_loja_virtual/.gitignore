@@ -1,0 +1,19 @@
+# Ignorar arquivos desnecessários
+*.xlsx
+*.pdf
+*.ini
+*.log
+*.dat
+
+# Ignorar diretórios desnecessários
+api_loja_virtual/
+../../Downloads/
+../../Favorites/
+../../AppData/
+../../Desktop/
+../../Music/
+../../Pictures/
+../../Videos/
+../../OneDrive/
+
+
