@@ -1,21 +1,17 @@
-from flask import Flask,jsonify,render_template,request, redirect,url_for
+from flask import Flask, jsonify, render_template, request, redirect, url_for
 import mysql.connector
 import utils
 
-from usuarios import usuarios_hp
-#from livraria import livraria_virtual
+from produtos import produtos_bp
+from usuarios import usuarios_bp
 
 app = Flask(__name__)
 
-app.register_blueprint(usuarios_hp)
-#app.register_blueprint(livraria_virtual)
-
+app.register_blueprint(produtos_bp)
+app.register_blueprint(usuarios_bp)
 @app.route('/sucesso')
 def sucesso():
-    return "Dados inseridos com sucesso"
-
-
-
+    return 'Dados inseridos com sucesso!'
 
 
 if __name__ == '__main__':
